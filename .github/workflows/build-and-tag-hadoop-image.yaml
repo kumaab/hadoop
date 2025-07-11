@@ -100,7 +100,7 @@ jobs:
           images: |
             ${{ github.repository_owner }}/hadoop
           tags: |
-            type=ref,event=tag
+            type=match,pattern=docker-image-(.*),value={{ ref_name }},group=1
           flavor: |
             latest=false
 
