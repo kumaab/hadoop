@@ -53,7 +53,7 @@ jobs:
             success=true
           fi
 
-          echo "success=$success" >> $GITHUB_OUTPUT
+          echo "success=false" >> $GITHUB_OUTPUT
 
       - name: Set up QEMU
         if: ${{ steps.pull.outputs.success == 'false' }}
