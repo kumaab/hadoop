@@ -19,7 +19,14 @@ name: build-and-tag-hadoop-image
 # For non-PR runs, it also pushes the image to the registry, tagging it based on the branch name.
 
 on:
-  workflow_call:
+  push:
+    branches:
+      - 'docker-hadoop-**'
+      - '!docker-hadoop-runner-**'
+
+permissions:
+  contents: read
+  packages: write
 
 jobs:
   build:
@@ -88,7 +95,7 @@ jobs:
         uses: docker/metadata-action@8e5442c4ef9f78752691e2d8f8d19755c6f78e81
         with:
           images: |
-            ${{ github.repository_owner }}/hadoop
+            ghcr.io/${{ github.repository_owner }}/hadoop
           tags: |
             type=ref,event=tag
           flavor: |
